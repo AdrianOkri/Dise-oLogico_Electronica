@@ -1,4 +1,4 @@
-// No� Adri�n Ricoy Tell�z
+// Adrián Okri
 // UPEM 19/06/2018
 // Proyecto de motor
 #include <16f84a.h>
