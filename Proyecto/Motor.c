@@ -65,8 +65,8 @@ int LedEM() {
    if(input(pin_a2) == 1){
          while(input(pin_a2) == 1) { delay_ms(30); }
          return 1;
-   } else if (input(pin_a1) == 1){
-         while(input(pin_a1) == 1) { delay_ms(30); }
+   } else if (input(pin_a3) == 1){
+         while(input(pin_a3) == 1) { delay_ms(30); }
          return 2;
    }
    return 0;
