@@ -1,4 +1,4 @@
-CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 00:25
+CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 10:21
 
                Filename: C:\Users\WASP\Documents\Porgramación\PIC16f84a\Proyecto\Motor.lst
 
@@ -13,7 +13,7 @@ CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 00:25
 0001:  MOVWF  0A
 0002:  GOTO   07E
 0003:  NOP
-.................... // Noé Adrián Ricoy Telléz 
+.................... // AdriÃ¡n Okri 
 .................... // UPEM 19/06/2018 
 .................... // Proyecto de motor 
 .................... #include <16f84a.h> 
@@ -50,8 +50,8 @@ CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 00:25
 .................... void CicloMotor(int numPuerta[4]); 
 .................... int LedEM(); 
 .................... // Variables globales ********************************************************** 
-.................... int t = 3, tiempoUsuario= 5000, lim = 5, limite = 250; // Variable del tiempo en el que irá el motor 
-.................... // Función princial  *********************************************************** 
+.................... int t = 3, tiempoUsuario= 5000, lim = 5, limite = 250; // Variable del tiempo en el que irï¿½ el motor 
+.................... // Funciï¿½n princial  *********************************************************** 
 .................... void main() { 
 *
 007E:  CLRF   04
@@ -86,14 +86,14 @@ CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 00:25
 0097:  MOVWF  1A
 0098:  MOVLW  05
 0099:  MOVWF  1B
-....................    char posElevador = '<'; // Variable que me dirá si el elevador se encuentra en el lado izquierdo o derecho 
+....................    char posElevador = '<'; // Variable que me dirï¿½ si el elevador se encuentra en el lado izquierdo o derecho 
 009A:  MOVLW  3C
 009B:  MOVWF  1C
 ....................     
-....................    EncenderLedPrueba(); // Llamar al led de prueba que será la que nos diga que hay corriente y el programa funciona  
+....................    EncenderLedPrueba(); // Llamar al led de prueba que serï¿½ la que nos diga que hay corriente y el programa funciona  
 009C:  GOTO   018
-....................    // La funciï¿½n CicloMotor hará todo el proceso de girar el motor en un sentido 
-....................    if (LedEM() == 1) { // La función LedEM nos retornará un 1 si, ha detectado un objeto en la puerta de la izquierda y un 2 si es en la derecha 
+....................    // La funciï¿½n CicloMotor harï¿½ todo el proceso de girar el motor en un sentido 
+....................    if (LedEM() == 1) { // La funciï¿½n LedEM nos retornarï¿½ un 1 si, ha detectado un objeto en la puerta de la izquierda y un 2 si es en la derecha 
 009D:  CALL   030
 009E:  DECFSZ 0D,W
 009F:  GOTO   0B5
@@ -170,21 +170,19 @@ CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 00:25
 001C:  SUBLW  02
 001D:  BTFSS  03.0
 001E:  GOTO   02F
-....................       output_high(pin_a1); 
+....................       output_high(pin_a1); delay_ms(tiempoLed); 
 001F:  BSF    03.5
 0020:  BCF    05.1
 0021:  BCF    03.5
 0022:  BSF    05.1
-....................       delay_ms(tiempoLed); 
 0023:  MOVF   1E,W
 0024:  MOVWF  23
 0025:  CALL   004
-....................       output_low(pin_a1);   
+....................       output_low(pin_a1);  delay_ms(tiempoLed); 
 0026:  BSF    03.5
 0027:  BCF    05.1
 0028:  BCF    03.5
 0029:  BCF    05.1
-....................       delay_ms(tiempoLed); 
 002A:  MOVF   1E,W
 002B:  MOVWF  23
 002C:  CALL   004
@@ -193,7 +191,7 @@ CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 00:25
 002E:  GOTO   01B
 .................... } 
 002F:  GOTO   09D (RETURN)
-.................... // Función que encenderá una de las compuertas b para el motor paso a paso 
+.................... // Funciï¿½n que encenderï¿½ una de las compuertas b para el motor paso a paso 
 .................... void EncenderMotorPaso(int puerto) { 
 ....................    output_b(puerto); 
 *
@@ -207,7 +205,7 @@ CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 00:25
 0075:  MOVWF  23
 0076:  CALL   004
 .................... } 
-.................... // Hará todo el proceso de encender las compuertas en el orden que les mandes 
+.................... // Harï¿½ todo el proceso de encender las compuertas en el orden que les mandes 
 .................... void CicloMotor(int numPuerta[4]) { 
 ....................    int i, j, k; // Variables de los ciclos 
 ....................    delay_ms(tiempoUsuario); 
@@ -227,13 +225,12 @@ CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 00:25
 0060:  SUBWF  13,W
 0061:  BTFSS  03.0
 0062:  GOTO   07B
-....................          for(k = 0; k <= 3; k++) { 
+....................          for(k = 0; k <= 3; k++) { EncenderMotorPaso(numPuerta[k]); } 
 0063:  CLRF   20
 0064:  MOVF   20,W
 0065:  SUBLW  03
 0066:  BTFSS  03.0
 0067:  GOTO   079
-....................             EncenderMotorPaso(numPuerta[k]); 
 0068:  MOVF   1D,W
 0069:  ADDWF  20,W
 006A:  MOVWF  04
@@ -241,7 +238,6 @@ CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 00:25
 006C:  MOVWF  21
 006D:  MOVF   21,W
 006E:  MOVWF  22
-....................          } 
 *
 0077:  INCF   20,F
 0078:  GOTO   064
@@ -253,49 +249,45 @@ CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 00:25
 007C:  GOTO   05A
 .................... } 
 007D:  RETURN
-.................... // Función que retornará un verdadero o falso dependiendo si ha detectado un objeto 
+.................... // Funciï¿½n que retornarï¿½ un valorfalso dependiendo si ha detectado un objeto 
 .................... int LedEM() { 
-....................    if(input(pin_a2) == 1){ 
+....................    if(input(pin_a2) == 1){ // pin_a2 serÃ¡n los LEDS de la izquierda 
 *
 0030:  BSF    03.5
 0031:  BSF    05.2
 0032:  BCF    03.5
 0033:  BTFSS  05.2
 0034:  GOTO   042
-....................          while(input(pin_a2) == 1) { 
+....................          while(input(pin_a2) == 1) { delay_ms(30); } 
 0035:  BSF    03.5
 0036:  BSF    05.2
 0037:  BCF    03.5
 0038:  BTFSS  05.2
 0039:  GOTO   03E
-....................             delay_ms(30); 
 003A:  MOVLW  1E
 003B:  MOVWF  23
 003C:  CALL   004
-....................          } 
 003D:  GOTO   035
 ....................          return 1; 
 003E:  MOVLW  01
 003F:  MOVWF  0D
 0040:  GOTO   055
-....................    } else if (input(pin_a1) == 1){ 
+....................    } else if (input(pin_a3) == 1){ // pin_a3 serÃ¡m los LEDS de la derecha 
 0041:  GOTO   053
 0042:  BSF    03.5
-0043:  BSF    05.1
+0043:  BSF    05.3
 0044:  BCF    03.5
-0045:  BTFSS  05.1
+0045:  BTFSS  05.3
 0046:  GOTO   053
-....................       while(input(pin_a1) == 1) { 
+....................          while(input(pin_a3) == 1) { delay_ms(30); } 
 0047:  BSF    03.5
-0048:  BSF    05.1
+0048:  BSF    05.3
 0049:  BCF    03.5
-004A:  BTFSS  05.1
+004A:  BTFSS  05.3
 004B:  GOTO   050
-....................             delay_ms(30); 
 004C:  MOVLW  1E
 004D:  MOVWF  23
 004E:  CALL   004
-....................          } 
 004F:  GOTO   047
 ....................          return 2; 
 0050:  MOVLW  02

@@ -12,10 +12,10 @@ Stack used: 2 worst case (out of 8 total available)
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   80    50 100  Motor.c
+   72    50 100  Motor.c
   133     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f84a.h
 ----- -----
-  213    50 Total
+  205    50 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -29,14 +29,14 @@ Page ROM  %  RAM   Vol Diff  Functions:
 Program metrics:
     Functions               5
     Statements              50
-    Comments                58
+    Comments                60
     Volume (V)              2067
     Difficilty (D)          19.2
     Effort to implement (E) 39627
     Time to implement (T)   37 minutes
     Est Delivered Bugs (B)  0
     Cyclomatic Complexity   12
-    Maintainability (MI)    60
+    Maintainability (MI)    62
 
  Segment     Used  Free
 -----------  ----  ----

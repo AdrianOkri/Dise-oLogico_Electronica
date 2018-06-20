@@ -54,18 +54,16 @@ void CicloMotor(int numPuerta[4]) {
    delay_ms(tiempoUsuario);
    for(i = 0; i <= lim; i++) {
       for(j = 0; j <= limite; j++) {
-         for(k = 0; k <= 3; k++) {
-            EncenderMotorPaso(numPuerta[k]);
-         }
+         for(k = 0; k <= 3; k++) { EncenderMotorPaso(numPuerta[k]); }
       }
    }
 }
-// Funci�n que retornar� un verdadero o falso dependiendo si ha detectado un objeto
+// Funci�n que retornar� un valorfalso dependiendo si ha detectado un objeto
 int LedEM() {
-   if(input(pin_a2) == 1){
+   if(input(pin_a2) == 1){ // pin_a2 serán los LEDS de la izquierda
          while(input(pin_a2) == 1) { delay_ms(30); }
          return 1;
-   } else if (input(pin_a3) == 1){
+   } else if (input(pin_a3) == 1){ // pin_a3 serám los LEDS de la derecha
          while(input(pin_a3) == 1) { delay_ms(30); }
          return 2;
    }
