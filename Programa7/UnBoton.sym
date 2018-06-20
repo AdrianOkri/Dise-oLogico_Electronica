@@ -1,0 +1,49 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+011     main.i
+012     main.contador
+013     main.@SCRATCH1
+014     @delay_ms1.P1
+10D-10E @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+0004  @delay_ms1
+0018  main
+0018  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\WASP\Documents\Porgramación\PIC16f84a\Programa7\
+
+Project Files:
+    UnBoton.c
+    ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f84a.h
+
+Units:
+    C:\Users\WASP\Documents\Porgramación\PIC16f84a\Programa7\UnBoton (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      UnBoton.err
+    Ext Symbols: UnBoton.esym
+    INHX8:       UnBoton.hex
+    Symbols:     UnBoton.sym
+    List:        UnBoton.lst
+    Debug/COFF:  UnBoton.cof
+    Project:     UnBoton.PJT
+    Call Tree:   UnBoton.tre
+    Statistics:  UnBoton.sta

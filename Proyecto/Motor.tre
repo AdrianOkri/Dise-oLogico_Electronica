@@ -1,0 +1,28 @@
+ÀÄMotor
+   ÀÄmain  0/81  Ram=1
+      ÃÄ??0??
+      ÃÄEncenderLedPrueba  0/24  Ram=2
+      ³  ÃÄ@delay_ms1  0/20  Ram=1
+      ³  ÀÄ@delay_ms1  0/20  Ram=1
+      ÃÄLedEM  0/38  Ram=1
+      ³  ÃÄ@delay_ms1  0/20  Ram=1
+      ³  ÀÄ@delay_ms1  0/20  Ram=1
+      ÃÄCicloMotor  0/40  Ram=5
+      ³  ÃÄ@delay_ms1  0/20  Ram=1
+      ³  ÀÄEncenderMotorPaso  (Inline)  Ram=1
+      ³     ÀÄ@delay_ms1  0/20  Ram=1
+      ÃÄCicloMotor  0/40  Ram=5
+      ³  ÃÄ@delay_ms1  0/20  Ram=1
+      ³  ÀÄEncenderMotorPaso  (Inline)  Ram=1
+      ³     ÀÄ@delay_ms1  0/20  Ram=1
+      ÃÄLedEM  0/38  Ram=1
+      ³  ÃÄ@delay_ms1  0/20  Ram=1
+      ³  ÀÄ@delay_ms1  0/20  Ram=1
+      ÃÄCicloMotor  0/40  Ram=5
+      ³  ÃÄ@delay_ms1  0/20  Ram=1
+      ³  ÀÄEncenderMotorPaso  (Inline)  Ram=1
+      ³     ÀÄ@delay_ms1  0/20  Ram=1
+      ÀÄCicloMotor  0/40  Ram=5
+         ÃÄ@delay_ms1  0/20  Ram=1
+         ÀÄEncenderMotorPaso  (Inline)  Ram=1
+            ÀÄ@delay_ms1  0/20  Ram=1

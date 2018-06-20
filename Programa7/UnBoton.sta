@@ -1,0 +1,43 @@
+
+ROM used: 95 (9%)
+          95 (9%) including unused fragments
+
+          1 Average locations per line
+          4 Average locations per statement
+
+RAM used: 5 (7%) at main() level
+          8 (12%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   36    24 100  UnBoton.c
+  133     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f84a.h
+----- -----
+  169    24 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20  21   1             @delay_ms1
+0     71  75   1   569  5.7  main
+
+Program metrics:
+    Functions               1
+    Statements              24
+    Comments                45
+    Volume (V)              572
+    Difficilty (D)          5.6
+    Effort to implement (E) 3201
+    Time to implement (T)   3 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   3
+    Maintainability (MI)    45
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-003FF    91  929  
+
+
+

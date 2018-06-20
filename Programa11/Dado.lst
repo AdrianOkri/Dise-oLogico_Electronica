@@ -1,0 +1,156 @@
+CCS PCM C Compiler, Version 4.114, 93460303               08-jun.-18 08:56
+
+               Filename: C:\Users\WASP\Documents\Porgramación\PIC16f84a\Programa11\Dado.lst
+
+               ROM used: 104 words (10%)
+                         Largest free fragment is 920
+               RAM used: 5 (7%) at main() level
+                         15 (22%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... // Noé Adrían Ricoy Telléz 
+.................... // UPEM 
+.................... // 05/06/2018 
+.................... // Dado 
+.................... #include <16f84a.h> 
+.................... //////// Standard Header file for the PIC16F84A device //////////////// 
+.................... #device PIC16F84A 
+.................... #list 
+....................  
+.................... #fuses XT,NOWDT 
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  1B
+0005:  MOVWF  04
+0006:  MOVF   00,W
+0007:  BTFSC  03.2
+0008:  GOTO   017
+0009:  MOVLW  01
+000A:  MOVWF  0D
+000B:  CLRF   0C
+000C:  DECFSZ 0C,F
+000D:  GOTO   00C
+000E:  DECFSZ 0D,F
+000F:  GOTO   00B
+0010:  MOVLW  4A
+0011:  MOVWF  0C
+0012:  DECFSZ 0C,F
+0013:  GOTO   012
+0014:  GOTO   015
+0015:  DECFSZ 00,F
+0016:  GOTO   009
+0017:  RETURN
+....................  
+.................... void main() { 
+0018:  CLRF   04
+0019:  MOVLW  1F
+001A:  ANDWF  03,F
+....................    set_tris_b(0x00); 
+001B:  MOVLW  00
+001C:  TRIS   6
+....................    output_b(0x00); 
+001D:  BSF    03.5
+001E:  CLRF   06
+001F:  BCF    03.5
+0020:  CLRF   06
+....................     
+....................    set_tris_a(0x0c); 
+0021:  MOVLW  0C
+0022:  TRIS   5
+....................     
+....................    int i; 
+....................    int display[7] = {0xc0, 0xf9, 0xa4, 0xb0,0x99,0x92, 0x82}; 
+0023:  MOVLW  C0
+0024:  MOVWF  12
+0025:  MOVLW  F9
+0026:  MOVWF  13
+0027:  MOVLW  A4
+0028:  MOVWF  14
+0029:  MOVLW  B0
+002A:  MOVWF  15
+002B:  MOVLW  99
+002C:  MOVWF  16
+002D:  MOVLW  92
+002E:  MOVWF  17
+002F:  MOVLW  82
+0030:  MOVWF  18
+....................    char j = 0; 
+0031:  CLRF   19
+....................     
+....................    for(i=0; i<=2; i++) { 
+0032:  CLRF   11
+0033:  MOVF   11,W
+0034:  SUBLW  02
+0035:  BTFSS  03.0
+0036:  GOTO   04F
+....................       output_high(pin_a1); 
+0037:  BSF    03.5
+0038:  BCF    05.1
+0039:  BCF    03.5
+003A:  BSF    05.1
+....................       delay_ms(500); 
+003B:  MOVLW  02
+003C:  MOVWF  1A
+003D:  MOVLW  FA
+003E:  MOVWF  1B
+003F:  CALL   004
+0040:  DECFSZ 1A,F
+0041:  GOTO   03D
+....................       output_low(pin_a1);   
+0042:  BSF    03.5
+0043:  BCF    05.1
+0044:  BCF    03.5
+0045:  BCF    05.1
+....................       delay_ms(500); 
+0046:  MOVLW  02
+0047:  MOVWF  1A
+0048:  MOVLW  FA
+0049:  MOVWF  1B
+004A:  CALL   004
+004B:  DECFSZ 1A,F
+004C:  GOTO   048
+....................    } 
+004D:  INCF   11,F
+004E:  GOTO   033
+....................     
+....................    while(true) { 
+....................       if(input(pin_a2) == 1){ 
+004F:  BSF    03.5
+0050:  BSF    05.2
+0051:  BCF    03.5
+0052:  BTFSS  05.2
+0053:  GOTO   066
+....................          output_b(display[j]); delay_ms(50); 
+0054:  MOVLW  12
+0055:  ADDWF  19,W
+0056:  MOVWF  04
+0057:  MOVF   00,W
+0058:  MOVWF  1A
+0059:  BSF    03.5
+005A:  CLRF   06
+005B:  BCF    03.5
+005C:  MOVF   1A,W
+005D:  MOVWF  06
+005E:  MOVLW  32
+005F:  MOVWF  1B
+0060:  CALL   004
+....................          j++; 
+0061:  INCF   19,F
+....................           
+....................          if(j >= 6) { j = 0; } 
+0062:  MOVF   19,W
+0063:  SUBLW  05
+0064:  BTFSS  03.0
+0065:  CLRF   19
+....................       } 
+....................    } 
+0066:  GOTO   04F
+.................... } 
+0067:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FF1   XT NOWDT PUT NOPROTECT

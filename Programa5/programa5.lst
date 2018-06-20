@@ -1,0 +1,316 @@
+CCS PCM C Compiler, Version 4.114, 93460303               01-jun.-18 10:06
+
+               Filename: C:\Users\WASP\Documents\Porgramación\PIC16f84a\Programa5\programa5.lst
+
+               ROM used: 211 words (21%)
+                         Largest free fragment is 813
+               RAM used: 5 (7%) at main() level
+                         11 (16%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... // Noé Adrían Ricoy Telléz 
+.................... // UPEM 
+.................... // 31/05/2018 
+.................... // 3 Secuencias de leds 
+.................... #include <16f84a.h> 
+.................... //////// Standard Header file for the PIC16F84A device //////////////// 
+.................... #device PIC16F84A 
+.................... #list 
+....................  
+.................... #fuses XT,NOWDT, NOPROTECT, NOPUT 
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  17
+0005:  MOVWF  04
+0006:  MOVF   00,W
+0007:  BTFSC  03.2
+0008:  GOTO   017
+0009:  MOVLW  01
+000A:  MOVWF  0D
+000B:  CLRF   0C
+000C:  DECFSZ 0C,F
+000D:  GOTO   00C
+000E:  DECFSZ 0D,F
+000F:  GOTO   00B
+0010:  MOVLW  4A
+0011:  MOVWF  0C
+0012:  DECFSZ 0C,F
+0013:  GOTO   012
+0014:  GOTO   015
+0015:  DECFSZ 00,F
+0016:  GOTO   009
+0017:  RETURN
+.................... #use fast_io(B) // Declarar rápido cambios de memorias 
+.................... #use fast_io(A) 
+....................  
+.................... void main (){ 
+0018:  CLRF   04
+0019:  MOVLW  1F
+001A:  ANDWF  03,F
+....................    set_tris_b(0x00); 
+001B:  MOVLW  00
+001C:  TRIS   6
+....................    output_b(0x00); 
+001D:  CLRF   06
+....................    int i, j, k, m; 
+....................    for(i=0; i<=2; i++) { 
+001E:  CLRF   11
+001F:  MOVF   11,W
+0020:  SUBLW  02
+0021:  BTFSS  03.0
+0022:  GOTO   035
+....................       output_high(pin_a1); 
+0023:  BSF    05.1
+....................       delay_ms(500); 
+0024:  MOVLW  02
+0025:  MOVWF  16
+0026:  MOVLW  FA
+0027:  MOVWF  17
+0028:  CALL   004
+0029:  DECFSZ 16,F
+002A:  GOTO   026
+....................       output_low(pin_a1);   
+002B:  BCF    05.1
+....................       delay_ms(500); 
+002C:  MOVLW  02
+002D:  MOVWF  16
+002E:  MOVLW  FA
+002F:  MOVWF  17
+0030:  CALL   004
+0031:  DECFSZ 16,F
+0032:  GOTO   02E
+....................    } 
+0033:  INCF   11,F
+0034:  GOTO   01F
+....................    int t=500; 
+0035:  MOVLW  F4
+0036:  MOVWF  15
+....................    delay_ms(t); 
+0037:  MOVF   15,W
+0038:  MOVWF  17
+0039:  CALL   004
+....................    while (true) 
+....................    { 
+....................       for ( j=0; j<=4; j++) 
+003A:  CLRF   12
+003B:  MOVF   12,W
+003C:  SUBLW  04
+003D:  BTFSS  03.0
+003E:  GOTO   087
+....................       { 
+....................          output_b(0x01); 
+003F:  MOVLW  01
+0040:  MOVWF  06
+....................          delay_ms(t); 
+0041:  MOVF   15,W
+0042:  MOVWF  17
+0043:  CALL   004
+....................          output_b(0x02); 
+0044:  MOVLW  02
+0045:  MOVWF  06
+....................          delay_ms(t); 
+0046:  MOVF   15,W
+0047:  MOVWF  17
+0048:  CALL   004
+....................          output_b(0x04); 
+0049:  MOVLW  04
+004A:  MOVWF  06
+....................          delay_ms(t); 
+004B:  MOVF   15,W
+004C:  MOVWF  17
+004D:  CALL   004
+....................          output_b(0x08); 
+004E:  MOVLW  08
+004F:  MOVWF  06
+....................          delay_ms(t); 
+0050:  MOVF   15,W
+0051:  MOVWF  17
+0052:  CALL   004
+....................          output_b(0x10); 
+0053:  MOVLW  10
+0054:  MOVWF  06
+....................          delay_ms(t); 
+0055:  MOVF   15,W
+0056:  MOVWF  17
+0057:  CALL   004
+....................          output_b(0x20); 
+0058:  MOVLW  20
+0059:  MOVWF  06
+....................          delay_ms(t); 
+005A:  MOVF   15,W
+005B:  MOVWF  17
+005C:  CALL   004
+....................          output_b(0x40); 
+005D:  MOVLW  40
+005E:  MOVWF  06
+....................          delay_ms(t); 
+005F:  MOVF   15,W
+0060:  MOVWF  17
+0061:  CALL   004
+....................          output_b(0x80); 
+0062:  MOVLW  80
+0063:  MOVWF  06
+....................          delay_ms(t); 
+0064:  MOVF   15,W
+0065:  MOVWF  17
+0066:  CALL   004
+....................          output_b(0x40); 
+0067:  MOVLW  40
+0068:  MOVWF  06
+....................          delay_ms(t); 
+0069:  MOVF   15,W
+006A:  MOVWF  17
+006B:  CALL   004
+....................          output_b(0x20); 
+006C:  MOVLW  20
+006D:  MOVWF  06
+....................          delay_ms(t); 
+006E:  MOVF   15,W
+006F:  MOVWF  17
+0070:  CALL   004
+....................          output_b(0x10); 
+0071:  MOVLW  10
+0072:  MOVWF  06
+....................          delay_ms(t); 
+0073:  MOVF   15,W
+0074:  MOVWF  17
+0075:  CALL   004
+....................          output_b(0x08); 
+0076:  MOVLW  08
+0077:  MOVWF  06
+....................          delay_ms(t); 
+0078:  MOVF   15,W
+0079:  MOVWF  17
+007A:  CALL   004
+....................          output_b(0x04); 
+007B:  MOVLW  04
+007C:  MOVWF  06
+....................          delay_ms(t); 
+007D:  MOVF   15,W
+007E:  MOVWF  17
+007F:  CALL   004
+....................          output_b(0x02); 
+0080:  MOVLW  02
+0081:  MOVWF  06
+....................          delay_ms(t); 
+0082:  MOVF   15,W
+0083:  MOVWF  17
+0084:  CALL   004
+....................       } 
+0085:  INCF   12,F
+0086:  GOTO   03B
+....................       for (k=0; k<=4; k++) 
+0087:  CLRF   13
+0088:  MOVF   13,W
+0089:  SUBLW  04
+008A:  BTFSS  03.0
+008B:  GOTO   0AC
+....................       { 
+....................          output_b(0x81); 
+008C:  MOVLW  81
+008D:  MOVWF  06
+....................          delay_ms(t); 
+008E:  MOVF   15,W
+008F:  MOVWF  17
+0090:  CALL   004
+....................          output_b(0x42); 
+0091:  MOVLW  42
+0092:  MOVWF  06
+....................          delay_ms(t); 
+0093:  MOVF   15,W
+0094:  MOVWF  17
+0095:  CALL   004
+....................          output_b(0x24); 
+0096:  MOVLW  24
+0097:  MOVWF  06
+....................          delay_ms(t); 
+0098:  MOVF   15,W
+0099:  MOVWF  17
+009A:  CALL   004
+....................          output_b(0x18); 
+009B:  MOVLW  18
+009C:  MOVWF  06
+....................          delay_ms(t); 
+009D:  MOVF   15,W
+009E:  MOVWF  17
+009F:  CALL   004
+....................          output_b(0x24); 
+00A0:  MOVLW  24
+00A1:  MOVWF  06
+....................          delay_ms(t); 
+00A2:  MOVF   15,W
+00A3:  MOVWF  17
+00A4:  CALL   004
+....................          output_b(0x42); 
+00A5:  MOVLW  42
+00A6:  MOVWF  06
+....................          delay_ms(t); 
+00A7:  MOVF   15,W
+00A8:  MOVWF  17
+00A9:  CALL   004
+....................       } 
+00AA:  INCF   13,F
+00AB:  GOTO   088
+....................       for (m=0; m<=4; m++) 
+00AC:  CLRF   14
+00AD:  MOVF   14,W
+00AE:  SUBLW  04
+00AF:  BTFSS  03.0
+00B0:  GOTO   0D1
+....................       { 
+....................          output_b(0xc0); 
+00B1:  MOVLW  C0
+00B2:  MOVWF  06
+....................          delay_ms(t); 
+00B3:  MOVF   15,W
+00B4:  MOVWF  17
+00B5:  CALL   004
+....................          output_b(0x30); 
+00B6:  MOVLW  30
+00B7:  MOVWF  06
+....................          delay_ms(t); 
+00B8:  MOVF   15,W
+00B9:  MOVWF  17
+00BA:  CALL   004
+....................          output_b(0x0c); 
+00BB:  MOVLW  0C
+00BC:  MOVWF  06
+....................          delay_ms(t); 
+00BD:  MOVF   15,W
+00BE:  MOVWF  17
+00BF:  CALL   004
+....................          output_b(0x03); 
+00C0:  MOVLW  03
+00C1:  MOVWF  06
+....................          delay_ms(t); 
+00C2:  MOVF   15,W
+00C3:  MOVWF  17
+00C4:  CALL   004
+....................          output_b(0x0c); 
+00C5:  MOVLW  0C
+00C6:  MOVWF  06
+....................          delay_ms(t); 
+00C7:  MOVF   15,W
+00C8:  MOVWF  17
+00C9:  CALL   004
+....................          output_b(0x30); 
+00CA:  MOVLW  30
+00CB:  MOVWF  06
+....................          delay_ms(t); 
+00CC:  MOVF   15,W
+00CD:  MOVWF  17
+00CE:  CALL   004
+....................       } 
+00CF:  INCF   14,F
+00D0:  GOTO   0AD
+....................    } 
+00D1:  GOTO   03A
+.................... } 
+00D2:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FF9   XT NOWDT NOPUT NOPROTECT

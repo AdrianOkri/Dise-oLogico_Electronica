@@ -1,0 +1,312 @@
+CCS PCM C Compiler, Version 4.114, 93460303               20-jun.-18 00:25
+
+               Filename: C:\Users\WASP\Documents\Porgramación\PIC16f84a\Proyecto\Motor.lst
+
+               ROM used: 207 words (20%)
+                         Largest free fragment is 817
+               RAM used: 9 (13%) at main() level
+                         24 (35%) worst case
+               Stack:    2 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   07E
+0003:  NOP
+.................... // Noé Adrián Ricoy Telléz 
+.................... // UPEM 19/06/2018 
+.................... // Proyecto de motor 
+.................... #include <16f84a.h> 
+.................... //////// Standard Header file for the PIC16F84A device //////////////// 
+.................... #device PIC16F84A 
+.................... #list 
+....................  
+.................... #fuses XT,NOWDT 
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  23
+0005:  MOVWF  04
+0006:  MOVF   00,W
+0007:  BTFSC  03.2
+0008:  GOTO   017
+0009:  MOVLW  01
+000A:  MOVWF  0D
+000B:  CLRF   0C
+000C:  DECFSZ 0C,F
+000D:  GOTO   00C
+000E:  DECFSZ 0D,F
+000F:  GOTO   00B
+0010:  MOVLW  4A
+0011:  MOVWF  0C
+0012:  DECFSZ 0C,F
+0013:  GOTO   012
+0014:  GOTO   015
+0015:  DECFSZ 00,F
+0016:  GOTO   009
+0017:  RETURN
+.................... // Funciones prototipos ******************************************************** 
+.................... void Esperar(int tiempo); 
+.................... void EncenderMotorPaso(int puerto); 
+.................... void EncenderLedPrueba(); 
+.................... void CicloMotor(int numPuerta[4]); 
+.................... int LedEM(); 
+.................... // Variables globales ********************************************************** 
+.................... int t = 3, tiempoUsuario= 5000, lim = 5, limite = 250; // Variable del tiempo en el que irá el motor 
+.................... // Función princial  *********************************************************** 
+.................... void main() { 
+*
+007E:  CLRF   04
+007F:  MOVLW  1F
+0080:  ANDWF  03,F
+0081:  MOVLW  03
+0082:  MOVWF  10
+0083:  MOVLW  88
+0084:  MOVWF  11
+0085:  MOVLW  05
+0086:  MOVWF  12
+0087:  MOVLW  FA
+0088:  MOVWF  13
+....................    set_tris_b(0x00); // Utilizar todas las compuertas B 
+0089:  MOVLW  00
+008A:  TRIS   6
+....................     
+....................    int numPuerta[4] = {0x05, 0x09, 0x0a, 0x06}; // Arreglo que contiene las salidas de la compuerta B 
+008B:  MOVLW  05
+008C:  MOVWF  14
+008D:  MOVLW  09
+008E:  MOVWF  15
+008F:  MOVLW  0A
+0090:  MOVWF  16
+0091:  MOVLW  06
+0092:  MOVWF  17
+....................    int numPuertaInv[4] = {0x06, 0x0a, 0x09, 0x05}; // Arreglo que contiene las salidas de la compuerta B de forma inversa  
+0093:  MOVWF  18
+0094:  MOVLW  0A
+0095:  MOVWF  19
+0096:  MOVLW  09
+0097:  MOVWF  1A
+0098:  MOVLW  05
+0099:  MOVWF  1B
+....................    char posElevador = '<'; // Variable que me dirá si el elevador se encuentra en el lado izquierdo o derecho 
+009A:  MOVLW  3C
+009B:  MOVWF  1C
+....................     
+....................    EncenderLedPrueba(); // Llamar al led de prueba que será la que nos diga que hay corriente y el programa funciona  
+009C:  GOTO   018
+....................    // La funciï¿½n CicloMotor hará todo el proceso de girar el motor en un sentido 
+....................    if (LedEM() == 1) { // La función LedEM nos retornará un 1 si, ha detectado un objeto en la puerta de la izquierda y un 2 si es en la derecha 
+009D:  CALL   030
+009E:  DECFSZ 0D,W
+009F:  GOTO   0B5
+....................       switch(posElevador)  
+....................       { 
+00A0:  MOVF   1C,W
+00A1:  XORLW  3C
+00A2:  BTFSC  03.2
+00A3:  GOTO   0A8
+00A4:  XORLW  02
+00A5:  BTFSC  03.2
+00A6:  GOTO   0AE
+00A7:  GOTO   0B4
+....................          case '<': CicloMotor(numPuerta);  posElevador = '>'; break; 
+00A8:  MOVLW  14
+00A9:  MOVWF  1D
+00AA:  CALL   056
+00AB:  MOVLW  3E
+00AC:  MOVWF  1C
+00AD:  GOTO   0B4
+....................          case '>': CicloMotor(numPuertaInv);  posElevador = '<'; break; 
+00AE:  MOVLW  18
+00AF:  MOVWF  1D
+00B0:  CALL   056
+00B1:  MOVLW  3C
+00B2:  MOVWF  1C
+00B3:  GOTO   0B4
+....................       } 
+....................    } else if (LedEM() == 2) { 
+00B4:  GOTO   0CE
+00B5:  CALL   030
+00B6:  MOVF   0D,W
+00B7:  SUBLW  02
+00B8:  BTFSS  03.2
+00B9:  GOTO   0CE
+....................       switch(posElevador)  
+....................       { 
+00BA:  MOVF   1C,W
+00BB:  XORLW  3C
+00BC:  BTFSC  03.2
+00BD:  GOTO   0C2
+00BE:  XORLW  02
+00BF:  BTFSC  03.2
+00C0:  GOTO   0C8
+00C1:  GOTO   0CE
+....................          case '<': CicloMotor(numPuerta); posElevador = '>'; break; 
+00C2:  MOVLW  14
+00C3:  MOVWF  1D
+00C4:  CALL   056
+00C5:  MOVLW  3E
+00C6:  MOVWF  1C
+00C7:  GOTO   0CE
+....................          case '>': CicloMotor(numPuertaInv); posElevador = '<'; break; 
+00C8:  MOVLW  18
+00C9:  MOVWF  1D
+00CA:  CALL   056
+00CB:  MOVLW  3C
+00CC:  MOVWF  1C
+00CD:  GOTO   0CE
+....................       } 
+....................    } 
+.................... } 
+.................... void EncenderLedPrueba() { 
+*
+0018:  MOVLW  F4
+0019:  MOVWF  1E
+....................    int i ,tiempoLed = 500; 
+*
+00CE:  SLEEP
+....................    for(i=0; i<=2; i++) { 
+*
+001A:  CLRF   1D
+001B:  MOVF   1D,W
+001C:  SUBLW  02
+001D:  BTFSS  03.0
+001E:  GOTO   02F
+....................       output_high(pin_a1); 
+001F:  BSF    03.5
+0020:  BCF    05.1
+0021:  BCF    03.5
+0022:  BSF    05.1
+....................       delay_ms(tiempoLed); 
+0023:  MOVF   1E,W
+0024:  MOVWF  23
+0025:  CALL   004
+....................       output_low(pin_a1);   
+0026:  BSF    03.5
+0027:  BCF    05.1
+0028:  BCF    03.5
+0029:  BCF    05.1
+....................       delay_ms(tiempoLed); 
+002A:  MOVF   1E,W
+002B:  MOVWF  23
+002C:  CALL   004
+....................    } 
+002D:  INCF   1D,F
+002E:  GOTO   01B
+.................... } 
+002F:  GOTO   09D (RETURN)
+.................... // Función que encenderá una de las compuertas b para el motor paso a paso 
+.................... void EncenderMotorPaso(int puerto) { 
+....................    output_b(puerto); 
+*
+006F:  BSF    03.5
+0070:  CLRF   06
+0071:  BCF    03.5
+0072:  MOVF   22,W
+0073:  MOVWF  06
+....................    delay_ms(t); 
+0074:  MOVF   10,W
+0075:  MOVWF  23
+0076:  CALL   004
+.................... } 
+.................... // Hará todo el proceso de encender las compuertas en el orden que les mandes 
+.................... void CicloMotor(int numPuerta[4]) { 
+....................    int i, j, k; // Variables de los ciclos 
+....................    delay_ms(tiempoUsuario); 
+*
+0056:  MOVF   11,W
+0057:  MOVWF  23
+0058:  CALL   004
+....................    for(i = 0; i <= lim; i++) { 
+0059:  CLRF   1E
+005A:  MOVF   1E,W
+005B:  SUBWF  12,W
+005C:  BTFSS  03.0
+005D:  GOTO   07D
+....................       for(j = 0; j <= limite; j++) { 
+005E:  CLRF   1F
+005F:  MOVF   1F,W
+0060:  SUBWF  13,W
+0061:  BTFSS  03.0
+0062:  GOTO   07B
+....................          for(k = 0; k <= 3; k++) { 
+0063:  CLRF   20
+0064:  MOVF   20,W
+0065:  SUBLW  03
+0066:  BTFSS  03.0
+0067:  GOTO   079
+....................             EncenderMotorPaso(numPuerta[k]); 
+0068:  MOVF   1D,W
+0069:  ADDWF  20,W
+006A:  MOVWF  04
+006B:  MOVF   00,W
+006C:  MOVWF  21
+006D:  MOVF   21,W
+006E:  MOVWF  22
+....................          } 
+*
+0077:  INCF   20,F
+0078:  GOTO   064
+....................       } 
+0079:  INCF   1F,F
+007A:  GOTO   05F
+....................    } 
+007B:  INCF   1E,F
+007C:  GOTO   05A
+.................... } 
+007D:  RETURN
+.................... // Función que retornará un verdadero o falso dependiendo si ha detectado un objeto 
+.................... int LedEM() { 
+....................    if(input(pin_a2) == 1){ 
+*
+0030:  BSF    03.5
+0031:  BSF    05.2
+0032:  BCF    03.5
+0033:  BTFSS  05.2
+0034:  GOTO   042
+....................          while(input(pin_a2) == 1) { 
+0035:  BSF    03.5
+0036:  BSF    05.2
+0037:  BCF    03.5
+0038:  BTFSS  05.2
+0039:  GOTO   03E
+....................             delay_ms(30); 
+003A:  MOVLW  1E
+003B:  MOVWF  23
+003C:  CALL   004
+....................          } 
+003D:  GOTO   035
+....................          return 1; 
+003E:  MOVLW  01
+003F:  MOVWF  0D
+0040:  GOTO   055
+....................    } else if (input(pin_a1) == 1){ 
+0041:  GOTO   053
+0042:  BSF    03.5
+0043:  BSF    05.1
+0044:  BCF    03.5
+0045:  BTFSS  05.1
+0046:  GOTO   053
+....................       while(input(pin_a1) == 1) { 
+0047:  BSF    03.5
+0048:  BSF    05.1
+0049:  BCF    03.5
+004A:  BTFSS  05.1
+004B:  GOTO   050
+....................             delay_ms(30); 
+004C:  MOVLW  1E
+004D:  MOVWF  23
+004E:  CALL   004
+....................          } 
+004F:  GOTO   047
+....................          return 2; 
+0050:  MOVLW  02
+0051:  MOVWF  0D
+0052:  GOTO   055
+....................    } 
+....................    return 0; 
+0053:  MOVLW  00
+0054:  MOVWF  0D
+.................... } 
+0055:  RETURN
+
+Configuration Fuses:
+   Word  1: 3FF1   XT NOWDT PUT NOPROTECT

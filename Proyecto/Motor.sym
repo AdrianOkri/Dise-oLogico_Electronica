@@ -1,0 +1,67 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+010     t
+011     tiempoUsuario
+012     lim
+013     limite
+014-017 main.numPuerta
+018-01B main.numPuertaInv
+01C     main.posElevador
+01D     CicloMotor.numPuerta
+01D     EncenderLedPrueba.i
+01D     main.@SCRATCH1
+01D     LedEM.@SCRATCH1
+01E     EncenderLedPrueba.tiempoLed
+01E     CicloMotor.i
+01F     CicloMotor.j
+020     CicloMotor.k
+021     CicloMotor.@SCRATCH1
+022     EncenderMotorPaso.puerto
+023     @delay_ms1.P1
+10D-10E @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+0004  @delay_ms1
+007E  main
+0018  EncenderLedPrueba
+006F  EncenderMotorPaso
+0056  CicloMotor
+0030  LedEM
+007E  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\WASP\Documents\Porgramación\PIC16f84a\Proyecto\
+
+Project Files:
+    Motor.c
+    ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f84a.h
+
+Units:
+    C:\Users\WASP\Documents\Porgramación\PIC16f84a\Proyecto\Motor (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      Motor.err
+    Ext Symbols: Motor.esym
+    INHX8:       Motor.hex
+    Symbols:     Motor.sym
+    List:        Motor.lst
+    Debug/COFF:  Motor.cof
+    Project:     Motor.PJT
+    Call Tree:   Motor.tre
+    Statistics:  Motor.sta

@@ -1,0 +1,257 @@
+CCS PCM C Compiler, Version 4.114, 93460303               08-jun.-18 09:42
+
+               Filename: C:\Users\WASP\Documents\Porgramación\PIC16f84a\Programa10\Super.lst
+
+               ROM used: 193 words (19%)
+                         Largest free fragment is 831
+               RAM used: 5 (7%) at main() level
+                         8 (12%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... // Noé Adrían Ricoy Telléz 
+.................... // UPEM 
+.................... // 04/06/2018 
+.................... // Super 
+.................... #include <16f84a.h> 
+.................... //////// Standard Header file for the PIC16F84A device //////////////// 
+.................... #device PIC16F84A 
+.................... #list 
+....................  
+.................... #fuses XT,NOWDT 
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  14
+0005:  MOVWF  04
+0006:  MOVF   00,W
+0007:  BTFSC  03.2
+0008:  GOTO   017
+0009:  MOVLW  01
+000A:  MOVWF  0D
+000B:  CLRF   0C
+000C:  DECFSZ 0C,F
+000D:  GOTO   00C
+000E:  DECFSZ 0D,F
+000F:  GOTO   00B
+0010:  MOVLW  4A
+0011:  MOVWF  0C
+0012:  DECFSZ 0C,F
+0013:  GOTO   012
+0014:  GOTO   015
+0015:  DECFSZ 00,F
+0016:  GOTO   009
+0017:  RETURN
+....................  
+.................... void main() { 
+0018:  CLRF   04
+0019:  MOVLW  1F
+001A:  ANDWF  03,F
+....................    set_tris_b(0x00); 
+001B:  MOVLW  00
+001C:  TRIS   6
+....................    output_b(0x00); 
+001D:  BSF    03.5
+001E:  CLRF   06
+001F:  BCF    03.5
+0020:  CLRF   06
+....................     
+....................    int i, t = 500, contador = 0; 
+0021:  MOVLW  F4
+0022:  MOVWF  12
+0023:  CLRF   13
+....................     
+....................    for(i=0; i<=2; i++) { 
+0024:  CLRF   11
+0025:  MOVF   11,W
+0026:  SUBLW  02
+0027:  BTFSS  03.0
+0028:  GOTO   039
+....................       output_high(pin_a1); 
+0029:  BSF    03.5
+002A:  BCF    05.1
+002B:  BCF    03.5
+002C:  BSF    05.1
+....................       delay_ms(t); 
+002D:  MOVF   12,W
+002E:  MOVWF  14
+002F:  CALL   004
+....................       output_low(pin_a1);   
+0030:  BSF    03.5
+0031:  BCF    05.1
+0032:  BCF    03.5
+0033:  BCF    05.1
+....................       delay_ms(t); 
+0034:  MOVF   12,W
+0035:  MOVWF  14
+0036:  CALL   004
+....................    } 
+0037:  INCF   11,F
+0038:  GOTO   025
+....................     
+....................    while(true) { 
+....................       if(input(pin_a2) == 1){ 
+0039:  BSF    03.5
+003A:  BSF    05.2
+003B:  BCF    03.5
+003C:  BTFSS  05.2
+003D:  GOTO   0BF
+....................          while(input(pin_a2) == 1) { 
+003E:  BSF    03.5
+003F:  BSF    05.2
+0040:  BCF    03.5
+0041:  BTFSS  05.2
+0042:  GOTO   047
+....................             delay_ms(30); 
+0043:  MOVLW  1E
+0044:  MOVWF  14
+0045:  CALL   004
+....................          } 
+0046:  GOTO   03E
+....................          switch(contador) { 
+0047:  MOVF   13,W
+0048:  BTFSC  03.2
+0049:  GOTO   06F
+004A:  XORLW  01
+004B:  BTFSC  03.2
+004C:  GOTO   075
+004D:  XORLW  03
+004E:  BTFSC  03.2
+004F:  GOTO   07B
+0050:  XORLW  01
+0051:  BTFSC  03.2
+0052:  GOTO   081
+0053:  XORLW  07
+0054:  BTFSC  03.2
+0055:  GOTO   087
+0056:  XORLW  01
+0057:  BTFSC  03.2
+0058:  GOTO   08D
+0059:  XORLW  03
+005A:  BTFSC  03.2
+005B:  GOTO   093
+005C:  XORLW  01
+005D:  BTFSC  03.2
+005E:  GOTO   099
+005F:  XORLW  0F
+0060:  BTFSC  03.2
+0061:  GOTO   09F
+0062:  XORLW  01
+0063:  BTFSC  03.2
+0064:  GOTO   0A5
+0065:  XORLW  03
+0066:  BTFSC  03.2
+0067:  GOTO   0AB
+0068:  XORLW  01
+0069:  BTFSC  03.2
+006A:  GOTO   0B1
+006B:  XORLW  07
+006C:  BTFSC  03.2
+006D:  GOTO   0B7
+006E:  GOTO   0BD
+....................             case 0: output_b(0xC0); break; //Encender el Cero 
+006F:  BSF    03.5
+0070:  CLRF   06
+0071:  MOVLW  C0
+0072:  BCF    03.5
+0073:  MOVWF  06
+0074:  GOTO   0BE
+....................             case 1: output_b(0xF9); break; // Uno 
+0075:  BSF    03.5
+0076:  CLRF   06
+0077:  MOVLW  F9
+0078:  BCF    03.5
+0079:  MOVWF  06
+007A:  GOTO   0BE
+....................             case 2: output_b(0xA4); break; // Dos 
+007B:  BSF    03.5
+007C:  CLRF   06
+007D:  MOVLW  A4
+007E:  BCF    03.5
+007F:  MOVWF  06
+0080:  GOTO   0BE
+....................             case 3: output_b(0xB0); break; // Tres 
+0081:  BSF    03.5
+0082:  CLRF   06
+0083:  MOVLW  B0
+0084:  BCF    03.5
+0085:  MOVWF  06
+0086:  GOTO   0BE
+....................             case 4: output_b(0x99); break; // Cuatro 
+0087:  BSF    03.5
+0088:  CLRF   06
+0089:  MOVLW  99
+008A:  BCF    03.5
+008B:  MOVWF  06
+008C:  GOTO   0BE
+....................             case 5: output_b(0x92); break; // Cinco 
+008D:  BSF    03.5
+008E:  CLRF   06
+008F:  MOVLW  92
+0090:  BCF    03.5
+0091:  MOVWF  06
+0092:  GOTO   0BE
+....................             case 6: output_b(0x82); break; // Seis 
+0093:  BSF    03.5
+0094:  CLRF   06
+0095:  MOVLW  82
+0096:  BCF    03.5
+0097:  MOVWF  06
+0098:  GOTO   0BE
+....................             case 7: output_b(0xB8); break; // Siete 
+0099:  BSF    03.5
+009A:  CLRF   06
+009B:  MOVLW  B8
+009C:  BCF    03.5
+009D:  MOVWF  06
+009E:  GOTO   0BE
+....................             case 8: output_b(0x80); break; // Ocho 
+009F:  BSF    03.5
+00A0:  CLRF   06
+00A1:  MOVLW  80
+00A2:  BCF    03.5
+00A3:  MOVWF  06
+00A4:  GOTO   0BE
+....................             case 9: output_b(0x98); break; // Nueve 
+00A5:  BSF    03.5
+00A6:  CLRF   06
+00A7:  MOVLW  98
+00A8:  BCF    03.5
+00A9:  MOVWF  06
+00AA:  GOTO   0BE
+....................             case 10:output_b(0x92); break; // N = 5 
+00AB:  BSF    03.5
+00AC:  CLRF   06
+00AD:  MOVLW  92
+00AE:  BCF    03.5
+00AF:  MOVWF  06
+00B0:  GOTO   0BE
+....................             case 11:output_b(0xC0); break; // O = 0 
+00B1:  BSF    03.5
+00B2:  CLRF   06
+00B3:  MOVLW  C0
+00B4:  BCF    03.5
+00B5:  MOVWF  06
+00B6:  GOTO   0BE
+....................             case 12:output_b(0x86); break; // E = 3 
+00B7:  BSF    03.5
+00B8:  CLRF   06
+00B9:  MOVLW  86
+00BA:  BCF    03.5
+00BB:  MOVWF  06
+00BC:  GOTO   0BE
+....................             default:contador = 0; 
+00BD:  CLRF   13
+....................          } 
+....................          contador++; 
+00BE:  INCF   13,F
+....................       } 
+....................    } 
+00BF:  GOTO   039
+.................... } 
+00C0:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FF1   XT NOWDT PUT NOPROTECT

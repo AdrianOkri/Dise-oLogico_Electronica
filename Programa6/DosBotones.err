@@ -1,0 +1,5 @@
+>>> Warning 202 "DosBotones.c" Line 13(11,12): Variable never used:   j
+>>> Warning 202 "DosBotones.c" Line 13(14,15): Variable never used:   k
+>>> Warning 202 "DosBotones.c" Line 13(17,18): Variable never used:   m
+      Memory usage:   ROM=10%      RAM=7% - 15%
+      0 Errors,  3 Warnings.

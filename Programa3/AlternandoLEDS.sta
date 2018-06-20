@@ -1,0 +1,43 @@
+
+ROM used: 83 (8%)
+          83 (8%) including unused fragments
+
+          1 Average locations per line
+          5 Average locations per statement
+
+RAM used: 5 (7%) at main() level
+          7 (10%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   28    16 100  AlternandoLEDS.c
+  133     0   0  ..\..\..\..\..\Program Files (x86)\PICC\devices\16f84a.h
+----- -----
+  161    16 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20  24   1             @delay_ms1
+0     59  71   1   351  3.8  main
+
+Program metrics:
+    Functions               1
+    Statements              16
+    Comments                52
+    Volume (V)              354
+    Difficilty (D)          3.6
+    Effort to implement (E) 1286
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    46
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-003FF    79  941  
+
+
+

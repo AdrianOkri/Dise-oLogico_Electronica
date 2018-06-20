@@ -1,0 +1,53 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+011     main.i
+012     main.j
+013     main.k
+014     main.m
+015     main.contador
+016     main.t
+017     main.@SCRATCH1
+018     @delay_ms1.P1
+10D-10E @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+0004  @delay_ms1
+0018  main
+0018  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\WASP\Documents\Porgramación\PIC16f84a\Programa8\
+
+Project Files:
+    UnBotonTresSecuencias.c
+    ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f84a.h
+
+Units:
+    C:\Users\WASP\Documents\Porgramación\PIC16f84a\Programa8\UnBotonTresSecuencias (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      UnBotonTresSecuencias.err
+    Ext Symbols: UnBotonTresSecuencias.esym
+    INHX8:       UnBotonTresSecuencias.hex
+    Symbols:     UnBotonTresSecuencias.sym
+    List:        UnBotonTresSecuencias.lst
+    Debug/COFF:  UnBotonTresSecuencias.cof
+    Project:     UnBotonTresSecuencias.PJT
+    Call Tree:   UnBotonTresSecuencias.tre
+    Statistics:  UnBotonTresSecuencias.sta

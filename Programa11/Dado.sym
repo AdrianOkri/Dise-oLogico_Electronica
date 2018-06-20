@@ -1,0 +1,50 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+011     main.i
+012-018 main.display
+019     main.j
+01A     main.@SCRATCH1
+01B     @delay_ms1.P1
+10D-10E @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+0004  @delay_ms1
+0018  main
+0018  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\WASP\Documents\Porgramación\PIC16f84a\Programa11\
+
+Project Files:
+    Dado.c
+    ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f84a.h
+
+Units:
+    C:\Users\WASP\Documents\Porgramación\PIC16f84a\Programa11\Dado (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      Dado.err
+    Ext Symbols: Dado.esym
+    INHX8:       Dado.hex
+    Symbols:     Dado.sym
+    List:        Dado.lst
+    Debug/COFF:  Dado.cof
+    Project:     Dado.PJT
+    Call Tree:   Dado.tre
+    Statistics:  Dado.sta

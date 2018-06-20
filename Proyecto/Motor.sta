@@ -1,0 +1,47 @@
+
+ROM used: 207 (20%)
+          207 (20%) including unused fragments
+
+          1 Average locations per line
+          4 Average locations per statement
+
+RAM used: 9 (13%) at main() level
+          24 (35%) worst case
+
+Stack used: 2 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   80    50 100  Motor.c
+  133     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f84a.h
+----- -----
+  213    50 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20  10   1             @delay_ms1
+0     81  39   1   691  6.4  main
+0     24  12   2   181  3.6  EncenderLedPrueba
+ Inline        1    40  1.3  EncenderMotorPaso
+0     40  19   5   323  4.3  CicloMotor
+0     38  18   1   253  3.6  LedEM
+
+Program metrics:
+    Functions               5
+    Statements              50
+    Comments                58
+    Volume (V)              2067
+    Difficilty (D)          19.2
+    Effort to implement (E) 39627
+    Time to implement (T)   37 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   12
+    Maintainability (MI)    60
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-003FF   203  817  
+
+
+

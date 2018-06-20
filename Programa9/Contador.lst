@@ -1,0 +1,284 @@
+CCS PCM C Compiler, Version 4.114, 93460303               04-jun.-18 10:46
+
+               Filename: C:\Users\WASP\Documents\Porgramación\PIC16f84a\Programa9\Contador.lst
+
+               ROM used: 186 words (18%)
+                         Largest free fragment is 838
+               RAM used: 5 (7%) at main() level
+                         9 (13%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... // Noé Adrían Ricoy Telléz 
+.................... // UPEM 
+.................... // 04/06/2018 
+.................... // Contador 
+.................... #include <16f84a.h> 
+.................... //////// Standard Header file for the PIC16F84A device //////////////// 
+.................... #device PIC16F84A 
+.................... #list 
+....................  
+.................... #fuses XT,NOWDT, NOPROTECT, NOPUT 
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  15
+0005:  MOVWF  04
+0006:  MOVF   00,W
+0007:  BTFSC  03.2
+0008:  GOTO   017
+0009:  MOVLW  01
+000A:  MOVWF  0D
+000B:  CLRF   0C
+000C:  DECFSZ 0C,F
+000D:  GOTO   00C
+000E:  DECFSZ 0D,F
+000F:  GOTO   00B
+0010:  MOVLW  4A
+0011:  MOVWF  0C
+0012:  DECFSZ 0C,F
+0013:  GOTO   012
+0014:  GOTO   015
+0015:  DECFSZ 00,F
+0016:  GOTO   009
+0017:  RETURN
+.................... #use fast_io(B) // Declarar rápido cambios de memorias 
+.................... #use fast_io(A) 
+....................  
+.................... void main() { 
+0018:  CLRF   04
+0019:  MOVLW  1F
+001A:  ANDWF  03,F
+....................    set_tris_b(0x00); 
+001B:  MOVLW  00
+001C:  TRIS   6
+....................    output_b(0x00); 
+001D:  CLRF   06
+....................    int i, t = 500, op = 0; 
+001E:  MOVLW  F4
+001F:  MOVWF  12
+0020:  CLRF   13
+....................    for(i=0; i<=2; i++) { 
+0021:  CLRF   11
+0022:  MOVF   11,W
+0023:  SUBLW  02
+0024:  BTFSS  03.0
+0025:  GOTO   038
+....................       output_high(pin_a1); 
+0026:  BSF    05.1
+....................       delay_ms(500); 
+0027:  MOVLW  02
+0028:  MOVWF  14
+0029:  MOVLW  FA
+002A:  MOVWF  15
+002B:  CALL   004
+002C:  DECFSZ 14,F
+002D:  GOTO   029
+....................       output_low(pin_a1);   
+002E:  BCF    05.1
+....................       delay_ms(500); 
+002F:  MOVLW  02
+0030:  MOVWF  14
+0031:  MOVLW  FA
+0032:  MOVWF  15
+0033:  CALL   004
+0034:  DECFSZ 14,F
+0035:  GOTO   031
+....................    } 
+0036:  INCF   11,F
+0037:  GOTO   022
+....................     
+....................     
+....................     
+....................    while(true) { 
+....................    if(input(pin_a2) == 1){ 
+0038:  BTFSS  05.2
+0039:  GOTO   0B8
+....................          while(input(pin_a2) == 1) { 
+003A:  BTFSS  05.2
+003B:  GOTO   040
+....................             delay_ms(30); 
+003C:  MOVLW  1E
+003D:  MOVWF  15
+003E:  CALL   004
+....................          } 
+003F:  GOTO   03A
+....................     
+....................    output_b(0xC0); //Encender el Cero 
+0040:  MOVLW  C0
+0041:  MOVWF  06
+....................    delay_ms(t); 
+0042:  MOVF   12,W
+0043:  MOVWF  15
+0044:  CALL   004
+....................    output_b(0xF9); //Encender el UNO 
+0045:  MOVLW  F9
+0046:  MOVWF  06
+....................    delay_ms(t); 
+0047:  MOVF   12,W
+0048:  MOVWF  15
+0049:  CALL   004
+....................    output_b(0xA4); //Encender el Dos 
+004A:  MOVLW  A4
+004B:  MOVWF  06
+....................    delay_ms(t); 
+004C:  MOVF   12,W
+004D:  MOVWF  15
+004E:  CALL   004
+....................    output_b(0xB0); //Encender el Tres 
+004F:  MOVLW  B0
+0050:  MOVWF  06
+....................    delay_ms(t); 
+0051:  MOVF   12,W
+0052:  MOVWF  15
+0053:  CALL   004
+....................    output_b(0x99); //Encender el Cuatro 
+0054:  MOVLW  99
+0055:  MOVWF  06
+....................    delay_ms(t); 
+0056:  MOVF   12,W
+0057:  MOVWF  15
+0058:  CALL   004
+....................    output_b(0x21); //Encender el Cinco 
+0059:  MOVLW  21
+005A:  MOVWF  06
+....................    delay_ms(t); 
+005B:  MOVF   12,W
+005C:  MOVWF  15
+005D:  CALL   004
+....................    output_b(0x02); //Encender el Seis 
+005E:  MOVLW  02
+005F:  MOVWF  06
+....................    delay_ms(t); 
+0060:  MOVF   12,W
+0061:  MOVWF  15
+0062:  CALL   004
+....................    output_b(0xF8); //Encender el Siete 
+0063:  MOVLW  F8
+0064:  MOVWF  06
+....................    delay_ms(t); 
+0065:  MOVF   12,W
+0066:  MOVWF  15
+0067:  CALL   004
+....................    output_b(0x80); //Encender el Ocho 
+0068:  MOVLW  80
+0069:  MOVWF  06
+....................    delay_ms(t); 
+006A:  MOVF   12,W
+006B:  MOVWF  15
+006C:  CALL   004
+....................    output_b(0x98); //Encender el Nueve 
+006D:  MOVLW  98
+006E:  MOVWF  06
+....................    delay_ms(t); 
+006F:  MOVF   12,W
+0070:  MOVWF  15
+0071:  CALL   004
+....................    output_b(0x21); //Encender el N 
+0072:  MOVLW  21
+0073:  MOVWF  06
+....................    delay_ms(t); 
+0074:  MOVF   12,W
+0075:  MOVWF  15
+0076:  CALL   004
+....................    output_b(0xC0); //Encender el 0 
+0077:  MOVLW  C0
+0078:  MOVWF  06
+....................    delay_ms(t); 
+0079:  MOVF   12,W
+007A:  MOVWF  15
+007B:  CALL   004
+....................    output_b(0x86); //Encender el E 
+007C:  MOVLW  86
+007D:  MOVWF  06
+....................    delay_ms(t); 
+007E:  MOVF   12,W
+007F:  MOVWF  15
+0080:  CALL   004
+....................    output_b(0xC0); //Encender el 0 
+0081:  MOVLW  C0
+0082:  MOVWF  06
+....................    delay_ms(t); 
+0083:  MOVF   12,W
+0084:  MOVWF  15
+0085:  CALL   004
+....................    output_b(0x21); //Encender el N 
+0086:  MOVLW  21
+0087:  MOVWF  06
+....................    delay_ms(t); 
+0088:  MOVF   12,W
+0089:  MOVWF  15
+008A:  CALL   004
+....................    output_b(0x98); //Encender el Nueve 
+008B:  MOVLW  98
+008C:  MOVWF  06
+....................    delay_ms(t); 
+008D:  MOVF   12,W
+008E:  MOVWF  15
+008F:  CALL   004
+....................    output_b(0x80); //Encender el Ocho 
+0090:  MOVLW  80
+0091:  MOVWF  06
+....................    delay_ms(t); 
+0092:  MOVF   12,W
+0093:  MOVWF  15
+0094:  CALL   004
+....................    output_b(0xF8); //Encender el Siete 
+0095:  MOVLW  F8
+0096:  MOVWF  06
+....................    delay_ms(t); 
+0097:  MOVF   12,W
+0098:  MOVWF  15
+0099:  CALL   004
+....................    output_b(0x02); //Encender el Seis 
+009A:  MOVLW  02
+009B:  MOVWF  06
+....................    delay_ms(t); 
+009C:  MOVF   12,W
+009D:  MOVWF  15
+009E:  CALL   004
+....................    output_b(0x21); //Encender el Cinco 
+009F:  MOVLW  21
+00A0:  MOVWF  06
+....................    delay_ms(t); 
+00A1:  MOVF   12,W
+00A2:  MOVWF  15
+00A3:  CALL   004
+....................    output_b(0x99); //Encender el Cuatro 
+00A4:  MOVLW  99
+00A5:  MOVWF  06
+....................    delay_ms(t); 
+00A6:  MOVF   12,W
+00A7:  MOVWF  15
+00A8:  CALL   004
+....................    output_b(0xB0); //Encender el Tres 
+00A9:  MOVLW  B0
+00AA:  MOVWF  06
+....................    delay_ms(t); 
+00AB:  MOVF   12,W
+00AC:  MOVWF  15
+00AD:  CALL   004
+....................    output_b(0xA4); //Encender el Dos 
+00AE:  MOVLW  A4
+00AF:  MOVWF  06
+....................    delay_ms(t); 
+00B0:  MOVF   12,W
+00B1:  MOVWF  15
+00B2:  CALL   004
+....................    output_b(0xF9); //Encender el UNO 
+00B3:  MOVLW  F9
+00B4:  MOVWF  06
+....................    delay_ms(t); 
+00B5:  MOVF   12,W
+00B6:  MOVWF  15
+00B7:  CALL   004
+....................    } 
+....................    } 
+00B8:  GOTO   038
+.................... } 
+00B9:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FF9   XT NOWDT NOPUT NOPROTECT

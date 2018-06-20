@@ -1,0 +1,154 @@
+CCS PCM C Compiler, Version 4.114, 93460303               01-jun.-18 10:24
+
+               Filename: C:\Users\WASP\Documents\Porgramación\PIC16f84a\Programa6\DosBotones.lst
+
+               ROM used: 102 words (10%)
+                         Largest free fragment is 922
+               RAM used: 5 (7%) at main() level
+                         10 (15%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... // Noé Adrían Ricoy Telléz 
+.................... // UPEM 
+.................... // 01/05/2018 
+.................... // Dos botones 
+.................... #include <16f84a.h> 
+.................... //////// Standard Header file for the PIC16F84A device //////////////// 
+.................... #device PIC16F84A 
+.................... #list 
+....................  
+.................... #fuses XT,NOWDT, NOPROTECT, NOPUT 
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  16
+0005:  MOVWF  04
+0006:  MOVF   00,W
+0007:  BTFSC  03.2
+0008:  GOTO   017
+0009:  MOVLW  01
+000A:  MOVWF  0D
+000B:  CLRF   0C
+000C:  DECFSZ 0C,F
+000D:  GOTO   00C
+000E:  DECFSZ 0D,F
+000F:  GOTO   00B
+0010:  MOVLW  4A
+0011:  MOVWF  0C
+0012:  DECFSZ 0C,F
+0013:  GOTO   012
+0014:  GOTO   015
+0015:  DECFSZ 00,F
+0016:  GOTO   009
+0017:  RETURN
+....................  
+.................... void main() { 
+0018:  CLRF   04
+0019:  MOVLW  1F
+001A:  ANDWF  03,F
+....................    set_tris_b(0x00); 
+001B:  MOVLW  00
+001C:  TRIS   6
+....................    set_tris_a(0x24); 
+001D:  MOVLW  24
+001E:  TRIS   5
+....................    output_b(0x00); 
+001F:  BSF    03.5
+0020:  CLRF   06
+0021:  BCF    03.5
+0022:  CLRF   06
+....................    int i, j, k, m; 
+....................    for(i=0; i<=2; i++) { 
+0023:  CLRF   11
+0024:  MOVF   11,W
+0025:  SUBLW  02
+0026:  BTFSS  03.0
+0027:  GOTO   040
+....................       output_high(pin_a1); 
+0028:  BSF    03.5
+0029:  BCF    05.1
+002A:  BCF    03.5
+002B:  BSF    05.1
+....................       delay_ms(500); 
+002C:  MOVLW  02
+002D:  MOVWF  15
+002E:  MOVLW  FA
+002F:  MOVWF  16
+0030:  CALL   004
+0031:  DECFSZ 15,F
+0032:  GOTO   02E
+....................       output_low(pin_a1);   
+0033:  BSF    03.5
+0034:  BCF    05.1
+0035:  BCF    03.5
+0036:  BCF    05.1
+....................       delay_ms(500); 
+0037:  MOVLW  02
+0038:  MOVWF  15
+0039:  MOVLW  FA
+003A:  MOVWF  16
+003B:  CALL   004
+003C:  DECFSZ 15,F
+003D:  GOTO   039
+....................    } 
+003E:  INCF   11,F
+003F:  GOTO   024
+....................    while(true) { 
+....................       if(input(pin_a2) == 1){ 
+0040:  BSF    03.5
+0041:  BSF    05.2
+0042:  BCF    03.5
+0043:  BTFSS  05.2
+0044:  GOTO   052
+....................          while(input(pin_a2) == 1) { 
+0045:  BSF    03.5
+0046:  BSF    05.2
+0047:  BCF    03.5
+0048:  BTFSS  05.2
+0049:  GOTO   04E
+....................             delay_ms(30); 
+004A:  MOVLW  1E
+004B:  MOVWF  16
+004C:  CALL   004
+....................          } 
+004D:  GOTO   045
+....................          output_high(pin_b0); 
+004E:  BSF    03.5
+004F:  BCF    06.0
+0050:  BCF    03.5
+0051:  BSF    06.0
+....................       } 
+....................       if(input(pin_a3) == 1){ 
+0052:  BSF    03.5
+0053:  BSF    05.3
+0054:  BCF    03.5
+0055:  BTFSS  05.3
+0056:  GOTO   064
+....................          while(input(pin_a3) == 1) { 
+0057:  BSF    03.5
+0058:  BSF    05.3
+0059:  BCF    03.5
+005A:  BTFSS  05.3
+005B:  GOTO   060
+....................             delay_ms(30); 
+005C:  MOVLW  1E
+005D:  MOVWF  16
+005E:  CALL   004
+....................          } 
+005F:  GOTO   057
+....................          output_low(pin_b0); 
+0060:  BSF    03.5
+0061:  BCF    06.0
+0062:  BCF    03.5
+0063:  BCF    06.0
+....................       } 
+....................    } 
+0064:  GOTO   040
+.................... } 
+0065:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FF9   XT NOWDT NOPUT NOPROTECT
